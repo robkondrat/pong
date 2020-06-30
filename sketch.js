@@ -30,6 +30,9 @@ function draw() {
 
   ball.hasHitPlayer(playerPaddle);
   ball.hasHitAI(aiPaddle);
+
+  stroke(255);
+  line(width/2, 0, width/2, height);
 }
 
 function processAI() {
