@@ -15,10 +15,14 @@ class Paddle {
   }
 
   up() {
-    this.y -= 2;
+    if (this.y > 0) {
+      this.y -= 2;      
+    }
   }
 
   down() {
-    this.y += 2;
+    if (this.y < height - this.height) {
+      this.y += 2;    
+    }
   }
 }
