@@ -1,12 +1,16 @@
 let playerPaddle;
 let aiPaddle;
 let ball;
+let playerScore;
+let aiScore;
 
 function setup() {
   createCanvas(624, 351);
   playerPaddle = new Paddle(26);
   aiPaddle = new Paddle(width - 48);
   ball = new Ball();
+  playerScore = new Score(width / 2 - 40);
+  aiScore = new Score(width / 2 + 40);
 }
 
 function draw() {
@@ -25,7 +29,7 @@ function draw() {
 
   processAI();
 
-  ball.update();
+  ball.update(playerScore, aiScore);
   ball.display();
 
   ball.hasHitPlayer(playerPaddle);
@@ -33,6 +37,9 @@ function draw() {
 
   stroke(255);
   line(width/2, 0, width/2, height);
+
+  playerScore.display();
+  aiScore.display();
 }
 
 function processAI() {

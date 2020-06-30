@@ -4,12 +4,16 @@ class Ball {
     this.reset();
   }
 
-  update() {
+  update(playerScore, aiScore) {
     if (this.y < this.r || this.y > height - this.r) {
       this.ySpeed = -this.ySpeed;
     }
 
-    if (this.x < this.r || this.x > width + this.r) {
+    if (this.x < this.r) {
+      aiScore.increment();
+      this.reset();
+    } else if (this.x > width + this.r) {
+      playerScore.increment();
       this.reset();
     }
 
