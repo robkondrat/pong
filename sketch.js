@@ -17,16 +17,31 @@ function draw() {
   playerPaddle.update();
   aiPaddle.update();
 
-  processAI();
-
   if (playerPaddle.isUp) {
     playerPaddle.up();
   } else if (playerPaddle.isDown) {
     playerPaddle.down();
   }
 
+  processAI();
+
   ball.update();
   ball.display();
+
+  ball.hasHitPlayer(playerPaddle);
+  ball.hasHitAI(aiPaddle);
+}
+
+function processAI() {
+  let middleOfPaddle = aiPaddle.y + aiPaddle.height / 2;
+
+  if (middleOfPaddle > ball.y) {
+    aiPaddle.isUp = true;
+    aiPaddle.isDown = false;
+  } else {
+    aiPaddle.isDown = true;
+    aiPaddle.isUp = false;
+  }
 }
 
 function keyPressed() {
@@ -45,14 +60,3 @@ function keyReleased() {
   }
 }
 
-function processAI() {
-  let middleOfPaddle = aiPaddle.y + aiPaddle.height / 2;
-
-  if (middleOfPaddle > ball.y) {
-    aiPaddle.isUp = true;
-    aiPaddle.isDown = false;
-  } else {
-    aiPaddle.isDown = true;
-    aiPaddle.isUp = false;
-  }
-}
