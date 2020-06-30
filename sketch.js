@@ -14,6 +14,11 @@ function draw() {
   playerPaddle.display();
   aiPaddle.display();
 
+  playerPaddle.update();
+  aiPaddle.update();
+
+  processAI();
+
   if (playerPaddle.isUp) {
     playerPaddle.up();
   } else if (playerPaddle.isDown) {
@@ -37,5 +42,17 @@ function keyReleased() {
     playerPaddle.isUp = false;
   } else if (keyCode == DOWN_ARROW) {
     playerPaddle.isDown = false;
+  }
+}
+
+function processAI() {
+  let middleOfPaddle = aiPaddle.y + aiPaddle.height / 2;
+
+  if (middleOfPaddle > ball.y) {
+    aiPaddle.isUp = true;
+    aiPaddle.isDown = false;
+  } else {
+    aiPaddle.isDown = true;
+    aiPaddle.isUp = false;
   }
 }
